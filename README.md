@@ -3,7 +3,7 @@
 | Column              | Type       | Options                        |
 | ------------------  | ---------- | ------------------------------ |
 | nickname            | string     | not null                       |
-| email               | string     | not null  ユニーク制約           |
+| email               | string     | not null  unique: true         |
 | encrypted_password  | string     | not null                       |
 | family_name         | string     | not null                       |
 | first_name          | string     | not null                       |
@@ -16,49 +16,42 @@
 - has_many :items
 - has_many :oders
 
-## itemテーブル
+## itemsテーブル
 | Column              | Type       | Options                        |
 | ------------------  | ---------- | ------------------------------ |
 | name                | string     | not null                       |
 | text                | text       | not null                       |
-| category            | string     | not null                       |
-| sales-status        | string     | not null                       |
-| shopping-fee-status | string     | not null                       |
-| prefecture          | string     | not null                       |
-| scheduled-delivery  | string     | not null                       |
+| category_id         | integer    | not null                       |
+| sales_id            | integer    | not null                       |
+| shopping_id         | integer    | not null                       |
+| prefecture_id       | integer    | not null                       |
+| shopping-days_id    | integer    | not null                       |
 | price               | integer    | not null                       |
-| user                | references | not null 外部キ-                |
+| user                | references | not null foreign_key: true     |
 
 ### Association
 - belongs_to :user
-- has_many :oders
-- has_one_attached :image
 
-## oderテーブル
+## odersテーブル
 | Column              | Type       | Options                        |
 | ------------------  | ---------- | ------------------------------ |
-| card_number         | integer    | not null                       |
-| expiry              | integer    | not null                       |
-| cvc                 | integer    | not null                       |
-| item                | references | not null 外部キ-                |
-| user                | references | not null 外部キ-                |
+| item                | references | not null foreign_key: true     |
+| user                | references | not null foreign_key: true     |
 
 ### Association
-- belongs_to :user
 - belongs_to :item
 - belongs_to :oder-information
 
-## oder-informationテーブル
+## oder-informationsテーブル
 | Column              | Type       | Options                        |
 | ------------------  | ---------- | ------------------------------ |
 | postal code         | string     | not null                       |
-| prefectures         | string     | not null                       |
+| prefecture_id       | integer    | not null                       |
 | city                | string     | not null                       |
 | address             | string     | not null                       |
-| building_name       | string     |                                |
-| phone_number        | string     |                                |
-| user                | references | not null 外部キ-                |
+| building_name       | string     | not null                       |
+| phone_number        | string     | not null                       |
+| user                | references | not null foreign_key: true     |
 
 ### Association
-- belongs_to :
 - has_one:oder
