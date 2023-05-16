@@ -1,24 +1,64 @@
-# README
+## usersテーブル
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+| Column              | Type       | Options                        |
+| ------------------  | ---------- | ------------------------------ |
+| nickname            | string     | not null                       |
+| email               | string     | not null  ユニーク制約           |
+| encrypted_password  | string     | not null                       |
+| family_name         | string     | not null                       |
+| first_name          | string     | not null                       |
+| family_name_kana    | string     | not null                       |
+| first_name_kana     | string     | not null                       |
+| birth_day           | date       | not null                       |
 
-Things you may want to cover:
 
-* Ruby version
+### Association
+- has_many :items
+- has_many :oders
 
-* System dependencies
+## itemテーブル
+| Column              | Type       | Options                        |
+| ------------------  | ---------- | ------------------------------ |
+| name                | string     | not null                       |
+| text                | text       | not null                       |
+| category            | string     | not null                       |
+| sales-status        | string     | not null                       |
+| shopping-fee-status | string     | not null                       |
+| prefecture          | string     | not null                       |
+| scheduled-delivery  | string     | not null                       |
+| price               | integer    | not null                       |
+| user                | references | not null 外部キ-                |
 
-* Configuration
+### Association
+- belongs_to :user
+- has_many :oders
+- has_one_attached :image
 
-* Database creation
+## oderテーブル
+| Column              | Type       | Options                        |
+| ------------------  | ---------- | ------------------------------ |
+| card_number         | integer    | not null                       |
+| expiry              | integer    | not null                       |
+| cvc                 | integer    | not null                       |
+| item                | references | not null 外部キ-                |
+| user                | references | not null 外部キ-                |
 
-* Database initialization
+### Association
+- belongs_to :user
+- belongs_to :item
+- belongs_to :oder-information
 
-* How to run the test suite
+## oder-informationテーブル
+| Column              | Type       | Options                        |
+| ------------------  | ---------- | ------------------------------ |
+| postal code         | string     | not null                       |
+| prefectures         | string     | not null                       |
+| city                | string     | not null                       |
+| address             | string     | not null                       |
+| building_name       | string     |                                |
+| phone_number        | string     |                                |
+| user                | references | not null 外部キ-                |
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+### Association
+- belongs_to :
+- has_one:oder
