@@ -11,47 +11,49 @@
 | first_name_kana     | string     | not null                       |
 | birth_day           | date       | not null                       |
 
-
 ### Association
 - has_many :items
-- has_many :oders
+- has_many :orders
 
 ## itemsテーブル
 | Column              | Type       | Options                        |
 | ------------------  | ---------- | ------------------------------ |
-| name                | string     | not null                       |
-| text                | text       | not null                       |
-| category_id         | integer    | not null                       |
-| sales_id            | integer    | not null                       |
-| shopping_id         | integer    | not null                       |
-| prefecture_id       | integer    | not null                       |
-| shopping-days_id    | integer    | not null                       |
-| price               | integer    | not null                       |
-| user                | references | not null foreign_key: true     |
+| name                | string     | null false                     |
+| text                | text       | null false                     |
+| category_id         | integer    | null false                     |
+| sales_id            | integer    | null false                     |
+| shopping_id         | integer    | null false                     |
+| prefecture_id       | integer    | null false                     |
+| shopping_day_id     | integer    | null false                     |
+| price               | integer    | null false                     |
+| user_id             | references | null false  foreign_key: true  |
 
 ### Association
 - belongs_to :user
+- has_many :orders
 
-## odersテーブル
+## ordersテーブル
 | Column              | Type       | Options                        |
 | ------------------  | ---------- | ------------------------------ |
-| item                | references | not null foreign_key: true     |
-| user                | references | not null foreign_key: true     |
+| item_id             | references | null false  foreign_key: true  |
+| user_id             | references | null false  foreign_key: true  |
 
 ### Association
 - belongs_to :item
-- belongs_to :oder-information
+- belongs_to :user
+- has_one :order_information
 
-## oder-informationsテーブル
+
+## order_informationsテーブル
 | Column              | Type       | Options                        |
 | ------------------  | ---------- | ------------------------------ |
-| postal code         | string     | not null                       |
-| prefecture_id       | integer    | not null                       |
-| city                | string     | not null                       |
-| address             | string     | not null                       |
-| building_name       | string     | not null                       |
-| phone_number        | string     | not null                       |
-| user                | references | not null foreign_key: true     |
+| order_id            | string     | null false                     |
+| postal_code         | string     | null false                     |
+| prefecture_id       | integer    | null false                     |
+| city                | string     | null false                     |
+| address             | string     | null false                     |
+| building_name       | string     |                                |
+| phone_number        | string     | null false                     |
 
 ### Association
-- has_one:oder
+- belongs_to :order
