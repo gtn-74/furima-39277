@@ -19,9 +19,9 @@
 | Column              | Type       | Options                        |
 | ------------------  | ---------- | ------------------------------ |
 | name                | string     | null: false                    |
-| text                | text       | null: false                    |
+| content             | text       | null: false                    |
 | category_id         | integer    | null: false                    |
-| sales_id            | integer    | null: false                    |
+| sale_id             | integer    | null: false                    |
 | shopping_id         | integer    | null: false                    |
 | prefecture_id       | integer    | null: false                    |
 | shopping_day_id     | integer    | null: false                    |
@@ -36,7 +36,7 @@
 | Column              | Type       | Options                        |
 | ------------------  | ---------- | ------------------------------ |
 | item                | references | null: false  foreign_key: true |
-| use                 | references | null: false  foreign_key: true |
+| user                | references | null: false  foreign_key: true |
 
 ### Association
 - belongs_to :item
