@@ -1,10 +1,11 @@
 require 'rails_helper'
 RSpec.describe Item, type: :model do
-  before  do
-    @item = FactoryBot.build(:item)
-  end
-
   describe '商品出品登録' do
+    before  do
+      user = FactoryBot.create(:user)
+      @item = FactoryBot.build(:item, user_id: user.id)
+    end
+
     context '商品登録ができる場合' do
       it '全ての項目が存在すれば登録できる' do
         expect(@item).to be_valid
@@ -20,7 +21,7 @@ RSpec.describe Item, type: :model do
           @item.valid?
           expect(@item.errors.full_messages).to include "Name can't be blank"
         end
-        it '商品名が空では登録できない' do
+        it '商品説明文が空では登録できない' do
           @item.content = ''
           @item.valid?
           expect(@item.errors.full_messages).to include "Content can't be blank"
@@ -73,7 +74,7 @@ RSpec.describe Item, type: :model do
         it 'userが紐づいていない場合登録できない' do
           @item.user_id = nil
           @item.valid?
-          expect(@item.errors.full_messages).to include
+          expect(@item.errors.full_messages).to include "User must exist"
         end
       end
     end
