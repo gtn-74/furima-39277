@@ -41,7 +41,6 @@ RSpec.describe User, type: :model do
         expect(@user.errors.full_messages).to include "Password confirmation doesn't match Password",
                                                       'Password is too short (minimum is 6 characters)'
       end
-      # ここ良くわからん
       it 'passwordが129文字以上では登録できない' do
         @user.password = Faker::Internet.password(min_length: 129)
         @user.password_confirmation = @user.password
