@@ -41,10 +41,10 @@
 ### Association
 - belongs_to :item
 - belongs_to :user
-- has_one :order_information
+- has_one :address
 
 
-## order_informationsテーブル
+## addressesテーブル
 | Column              | Type       | Options                        |
 | ------------------  | ---------- | ------------------------------ |
 | order               | references | null: false  foreign_key: true |
