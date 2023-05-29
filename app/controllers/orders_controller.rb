@@ -1,11 +1,13 @@
 class OrdersController < ApplicationController
+  before_action :item_set, only: [:index, :create]
+  before_action :order_address_set, only: [:index, :new]
+  
   def index
-    @item = Item.find(params[:item_id])
-    @order_address = OrderAddress.new
+  
   end
 
   def new
-    @order_address = OrderAddress.new
+  
   end
 
   def create
@@ -22,15 +24,15 @@ class OrdersController < ApplicationController
   def order_params
     params.require(:order_address).permit(:postal_code, :prefecture_id, :city, :address, :building_name, :phone_number).merge(user_id: current_user.id,item_id: params[:item_id])
   end
+
+  def item_set
+    @item = Item.find(params[:item_id])
+  end
+
+  def order_address_set
+    @order_address = OrderAddress.new
+  end
 end
 
 
 
-
-#def donation_params
-#params.permit(:price).merge(user_id: current_user.id)
-#end
-
-#def address_params
-  #params.permit(:postal_code, :prefecture, :city, :house_number, :building_name).merge(order_id: @order.id)
-#end
