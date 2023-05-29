@@ -6,5 +6,6 @@ FactoryBot.define do
     address               { '長崎市' }
     building_name         { 'ビビル' }
     phone_number          { '00000000000' }
+    token                 { 'tok_abcdefghijk00000000000000000' }
   end
 end
