@@ -1,13 +1,10 @@
 class OrdersController < ApplicationController
-  before_action :authenticate_user!, only: [:index, :new]
+  before_action :authenticate_user!, only: [:index]
   before_action :item_set, only: [:index, :create]
-  before_action :order_address_set, only: [:index, :new]
+  before_action :order_address_set, only: [:index ]
   before_action :contributor, only: [:index, :new, :create]
   
   def index
-  end
-
-  def new
   end
 
   def create
