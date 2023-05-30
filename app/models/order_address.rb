@@ -6,7 +6,6 @@ class OrderAddress
   with_options presence: true do
     validates :city
     validates :address
-    validates :building_name
     validates :phone_number
     validates :user_id
     validates :item_id

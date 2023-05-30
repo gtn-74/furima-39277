@@ -1,6 +1,8 @@
 class OrdersController < ApplicationController
+  before_action :authenticate_user!, only: [:index, :new]
   before_action :item_set, only: [:index, :create]
   before_action :order_address_set, only: [:index, :new]
+  before_action :contributor, only: [:index, :new, :create]
   
   def index
   end
@@ -40,6 +42,11 @@ class OrdersController < ApplicationController
 
   def order_address_set
     @order_address = OrderAddress.new
+  end
+
+  def contributor
+    return unless  @item.user == current_user || @item.order.present? 
+    redirect_to root_path
   end
 end
 
