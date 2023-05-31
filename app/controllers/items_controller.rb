@@ -1,7 +1,7 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :edit]
   before_action :set_item, only: [:show, :edit, :update, :destroy]
-  before_action :contributor_confirmation, only: [:edit, :update, :destroy]
+  before_action :contributor_confirmation, only: [:edit, :update]
 
   def index
     @items = Item.order('id DESC')
@@ -35,11 +35,10 @@ class ItemsController < ApplicationController
   end
   
   def destroy
-    if @item.destroy
-      redirect_to root_path
-    else
-      redirect_to root_path
+    if @item.user_id == current_user.id
+     @item.destroy
     end
+      redirect_to root_path
   end
 
   private
@@ -53,7 +52,7 @@ class ItemsController < ApplicationController
   end
 
   def contributor_confirmation
-    return unless  @item.user == current_user || @item.order.present? 
+    return unless  @item.user == current_user && @item.order.present? 
     redirect_to root_path
   end
 end
