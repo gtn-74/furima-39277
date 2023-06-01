@@ -20,6 +20,8 @@ ja:
         shopping_day_id: 発送日数
         price: 金額
         user: ユーザー
+  activemodel:
+    attributes:
       order_address:
         postal_code: 郵便番号
         prefecture_id: 地域
