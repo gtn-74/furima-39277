@@ -1,7 +1,7 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :edit]
   before_action :set_item, only: [:show, :edit, :update, :destroy]
-  before_action :contributor_confirmation, only: [:edit, :update]
+  before_action :contributor_confirmation, only: [:edit]
 
   def index
     @items = Item.order('id DESC')
@@ -28,7 +28,7 @@ class ItemsController < ApplicationController
 
   def update
     if @item.update(item_params)
-      redirect_to root_path
+      redirect_to item_path
     else
       render :edit
     end
@@ -52,7 +52,10 @@ class ItemsController < ApplicationController
   end
 
   def contributor_confirmation
-    return unless  @item.user == current_user && @item.order.present? 
-    redirect_to root_path
+    if @item.user_id == current_user.id && @item.order.blank? 
+    render :edit
+    else
+      redirect_to root_path
+    end
   end
 end
