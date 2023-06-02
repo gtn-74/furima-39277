@@ -20,6 +20,7 @@ ja:
         shopping_day_id: 発送日数
         price: 金額
         user: ユーザー
+
   activemodel:
     attributes:
       order_address:

@@ -2,8 +2,8 @@ require 'rails_helper'
 RSpec.describe Item, type: :model do
   describe '商品出品登録' do
     before do
-      user = FactoryBot.create(:user)
-      @item = FactoryBot.build(:item, user_id: user.id)
+      
+      @item = FactoryBot.build(:item)
     end
 
     context '商品登録ができる場合' do
@@ -72,7 +72,7 @@ RSpec.describe Item, type: :model do
           expect(@item.errors.full_messages).to include "金額は9999999以下の値にしてください"
         end
         it 'userが紐づいていない場合登録できない' do
-          @item.user_id = nil
+          @item.user = nil
           @item.valid?
           expect(@item.errors.full_messages).to include "ユーザーを入力してください"
         end
