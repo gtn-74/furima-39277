@@ -1,8 +1,12 @@
 # capistranoのバージョンを記載。固定のバージョンを利用し続け、バージョン変更によるトラブルを防止する
 lock '3.17.3'
 
+#ブランチ名の指定
+set :branch, 'main'
+
 # Capistranoのログの表示に利用する
 set :application, 'furima-39277'
+set :deploy_to, "/var/www/"
 
 # どのリポジトリからアプリをpullするかを指定する
 set :repo_url,  'git@github.com:ogitaniryosuke/furima-39277.git'
@@ -30,4 +34,3 @@ namespace :deploy do
     invoke 'unicorn:restart'
   end
 end
-set :branch, 'main'
