@@ -362,7 +362,6 @@ DEPENDENCIES
   pry-rails
   puma (~> 3.11)
   rails (~> 6.0.0)
-  rake
   rspec-rails (~> 4.0.0)
   rubocop
   sass-rails (~> 5)
@@ -380,4 +379,4 @@ RUBY VERSION
    ruby 2.6.5p114
 
 BUNDLED WITH
-   2.4.10
+   2.4.13
