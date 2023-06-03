@@ -78,3 +78,4 @@ group :production do
 end
   gem 'mail', '2.7.1'
   gem 'rake'
+  gem 'mimemagic'
