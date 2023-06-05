@@ -34,11 +34,4 @@ namespace :deploy do
     invoke 'unicorn:restart'
   end
 end
-set :default_env, {
-  rbenv_root: "/home/user/.rbenv",
-  path: "/home/user/.rbenv/bin:$PATH",
-  region: ENV["S3_REGION"],
-  aws_access_key_id: ENV["S3_ACCESS_KEY"],
-  aws_secret_access_key: ENV["S3_SECRET_KEY"]
-}
 
