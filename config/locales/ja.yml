@@ -8,6 +8,7 @@ ja:
         family_name_kana: 苗字ふりがな
         first_name: 名前
         first_name_kana: 名前ふりがな 
+
       item:
         text: テキスト
         image: 画像
@@ -21,6 +22,13 @@ ja:
         price: 金額
         user: ユーザー
 
+  date:
+        formats:
+        order:
+          - :year
+          - :month
+          - :day
+
   activemodel:
     attributes:
       order_address:
@@ -33,3 +41,5 @@ ja:
         user_id: ユーザー
         item_id: アイテム
         token: トークン
+        
+  
